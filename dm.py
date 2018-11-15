@@ -38,6 +38,11 @@ def get_age(dm):
 
 	return (child, adol, young_adol, adult, old)
 
+def get_marital_status(dm):
+	no_of_m_status = Counter([status for status in dm.marital_status])
+	
+	#print(no_of_m_status)
+	return (no_of_m_status["M"],no_of_m_status["S"],no_of_m_status["D"],no_of_m_status["W"],no_of_m_status["U"])
 
 def get_month(dm):
 	month = Counter([month for month in dm.month_of_death])
@@ -144,7 +149,7 @@ def get_each_stats(filenames):
 		df = df[(df.sex == "F")]
 		print(df.shape)
 		#df = get_race(df)
-		stats = get_age(df)
+		stats = get_marital_status(df)
 		v1.append(stats[0])
 		v2.append(stats[1])
 		v3.append(stats[2])
@@ -178,7 +183,7 @@ def main():
 	#filenames = ['2005_data.csv','2006_data.csv']
 	
 	stats = get_each_stats(filenames)
-	print(stats)
+	#print(stats)
 	"""
 	Male_Female_TotalDeath_Male_Female_Suicide
 	stats = (['2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015'], 
@@ -217,7 +222,7 @@ def main():
 	"""
 
 	#get_percentage(stats[0],stats[2],stats[4])
-	#dm = pd.read_csv("2012_data.csv")
+	#dm = pd.read_csv("2005_data.csv")
 	#print(dm.shape)
 	
 
@@ -226,6 +231,7 @@ def main():
 	#get_death(dm)
 	#print(total[0])
 	#suicide_dataframe = get_suicide(dm)					#Gets all the suicide data in our dataframe
+	#get_marital_status(suicide_dataframe)
 	#print(suicide_dataframe.shape)
 	#get_age(suicide_dataframe)
 	#stats = get_race(suicide_dataframe)
@@ -246,14 +252,20 @@ def main():
 	plt.xticks(xpos,stats[0])
 	
 	#plt.bar(xpos-0.4,stats[0],width=0.4)
-	plt.bar(xpos-0.4,stats[1],width=0.2,label="Child (0-12)")
-	plt.bar(xpos-0.2,stats[2],width=0.2,label="Adolescent (13-18)")
-	plt.bar(xpos,stats[3],width=0.2,label="Young Adult (19-35)")
-	plt.bar(xpos+0.2,stats[4],width=0.2,label="Adult (36-59)")
-	plt.bar(xpos+0.4,stats[5],width=0.2,label="Older Adults (60+)")
+	#plt.bar(xpos-0.4,stats[1],width=0.2,label="Child (0-12)")
+	#plt.bar(xpos-0.2,stats[2],width=0.2,label="Adolescent (13-18)")
+	#plt.bar(xpos,stats[3],width=0.2,label="Young Adult (19-35)")
+	#plt.bar(xpos+0.2,stats[4],width=0.2,label="Adult (36-59)")
+	#plt.bar(xpos+0.4,stats[5],width=0.2,label="Older Adults (60+)")
 
 
 	#plt.bar(xpos,stats[1],width=0.4)
+
+	plt.bar(xpos-0.4,stats[1],width=0.2,label="Married")
+	plt.bar(xpos-0.2,stats[2],width=0.2,label="Single")
+	plt.bar(xpos,stats[3],width=0.2,label="Divorce")
+	plt.bar(xpos+0.2,stats[4],width=0.2,label="Widow")
+	plt.bar(xpos+0.4,stats[5],width=0.2,label="Unknown")
 
 
 
