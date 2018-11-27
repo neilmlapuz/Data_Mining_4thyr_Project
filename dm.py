@@ -58,12 +58,12 @@ def get_race(dm):
 	no_of_races = Counter([race for race in dm.race])
 
 
-	#print(no_of_races)
-	keys = [key for key,_ in no_of_races.most_common()]
-	values = [value for _,value in no_of_races.most_common()]
+	print(no_of_races)
+	#keys = [key for key,_ in no_of_races.most_common()]
+	#values = [value for _,value in no_of_races.most_common()]
 	#print(keys)
 	#print(values)
-	return(values)
+	#return(values)
 
 def get_education(dm):
 	edu_1989 = Counter([item for item in dm.education_1989_revision if not(math.isnan(item))])
@@ -146,7 +146,6 @@ def get_each_stats(filenames):
 		#female_t.append(female_suicide(df,df.shape))
 
 		df = get_suicide(df)
-		df = df[(df.sex == "F")]
 		print(df.shape)
 		#df = get_race(df)
 		stats = get_marital_status(df)
@@ -178,11 +177,11 @@ def get_dataframes(filenames):
 
 def main():
 	#takes all files that has the similar name *_data.csv
-	filenames = glob("*_data.csv")
-	filenames = sorted(filenames)
+	#filenames = glob("*_data.csv")
+	#filenames = sorted(filenames)
 	#filenames = ['2005_data.csv','2006_data.csv']
 	
-	stats = get_each_stats(filenames)
+	#stats = get_each_stats(filenames)
 	#print(stats)
 	"""
 	Male_Female_TotalDeath_Male_Female_Suicide
@@ -222,7 +221,7 @@ def main():
 	"""
 
 	#get_percentage(stats[0],stats[2],stats[4])
-	#dm = pd.read_csv("2005_data.csv")
+	dm = pd.read_csv("2005_data.csv")
 	#print(dm.shape)
 	
 
@@ -230,11 +229,11 @@ def main():
 	#total = dm.shape
 	#get_death(dm)
 	#print(total[0])
-	#suicide_dataframe = get_suicide(dm)					#Gets all the suicide data in our dataframe
+	suicide_dataframe = get_suicide(dm)					#Gets all the suicide data in our dataframe
 	#get_marital_status(suicide_dataframe)
 	#print(suicide_dataframe.shape)
 	#get_age(suicide_dataframe)
-	#stats = get_race(suicide_dataframe)
+	stats = get_race(suicide_dataframe)
 	#print(stats)
 	#l = female_suicide(suicide_dataframe,dm.shape)
 	#print(l.shape)
@@ -247,9 +246,9 @@ def main():
 	#value = [keys[1] for keys in ge.most_common(20)]
 	#ind = [keys[0] for keys in ge.most_common(20)]
 
-	xpos = np.arange(len(stats[0]))
+	#xpos = np.arange(len(stats[0]))
 
-	plt.xticks(xpos,stats[0])
+	#plt.xticks(xpos,stats[0])
 	
 	#plt.bar(xpos-0.4,stats[0],width=0.4)
 	#plt.bar(xpos-0.4,stats[1],width=0.2,label="Child (0-12)")
@@ -261,11 +260,11 @@ def main():
 
 	#plt.bar(xpos,stats[1],width=0.4)
 
-	plt.bar(xpos-0.4,stats[1],width=0.2,label="Married")
-	plt.bar(xpos-0.2,stats[2],width=0.2,label="Single")
-	plt.bar(xpos,stats[3],width=0.2,label="Divorce")
-	plt.bar(xpos+0.2,stats[4],width=0.2,label="Widow")
-	plt.bar(xpos+0.4,stats[5],width=0.2,label="Unknown")
+	#plt.bar(xpos-0.4,stats[1],width=0.2,label="Married")
+	#plt.bar(xpos-0.2,stats[2],width=0.2,label="Single")
+	#plt.bar(xpos,stats[3],width=0.2,label="Divorce")
+	#plt.bar(xpos+0.2,stats[4],width=0.2,label="Widow")
+	#plt.bar(xpos+0.4,stats[5],width=0.2,label="Unknown")
 
 
 
